@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Character, Response } from "../interfaces";
 
 export function useInViewport<T extends HTMLElement>(ref: React.RefObject<T>, options?: IntersectionObserverInit) {
-  const [inViewport, setInViewport] = useState(false);
   const [characters, setCharacters] = useState<Array<Character>>([])
   const nextRef = useRef<string | null>()
 
@@ -46,5 +45,5 @@ export function useInViewport<T extends HTMLElement>(ref: React.RefObject<T>, op
     }
   }, [options, ref, observer])
 
-  return {inViewport, characters}
+  return {characters}
 }
