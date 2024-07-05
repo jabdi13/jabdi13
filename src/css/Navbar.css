@@ -1,0 +1,19 @@
+.Navbar {
+  background: rgb(38,229,194);
+  background: linear-gradient(270deg, rgba(38,229,194,1) 0%, rgba(7,193,25,1) 100%);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  ul {
+    display: flex;
+    align-items: center;
+    li {
+      font-size: 2rem;
+      color:#3d8694;
+      font-weight: bold;
+    }
+    li:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+}

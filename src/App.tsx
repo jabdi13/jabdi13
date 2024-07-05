@@ -1,41 +1,24 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import { Character } from './interfaces'
+import { useRef } from 'react'
+import { Navbar } from './components/Navbar'
+import { CharacterList } from './components/CharacterList'
+import { useInViewport } from './hooks/useInViewport'
 
 function App() {
-  const [characters, setCharacters] = useState<Array<Character>>([])
-  useEffect(() => {
-    const getCharacters = async () => {
-      const response = await fetch('https://rickandmortyapi.com/api/character')
-      const result = await response.json()
-      console.log(setCharacters(result.results))
-    }
-    getCharacters()
-  }, [])
+  const lastRef = useRef(null)
+  
+  
+  const { characters } = useInViewport(lastRef, { threshold: 0.5 })
 
   return (
     <>
       <header>
-        <nav>
-          <ul>
-            <li>Characters</li>
-            <li>Locations</li>
-            <li>Episodes</li>
-          </ul>
-        </nav>
+        <Navbar />
       </header>
       <main>
         <section>
-          <ul>
-            {characters.map(character => (
-              <li>{character.name}</li>
-            ))}
-          </ul>
+          <CharacterList ref={lastRef} characters={characters} />
         </section>
       </main>
-      <footer>
-
-      </footer>
     </>
   )
 }
